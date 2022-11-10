@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+Route::group(['prefix' => 'tables'], function(){
+    Route::get('basic-table', function () { return view('pages.tables.basic-table'); });
+    Route::get('data-table', function () { return view('pages.tables.data-table'); });
+    Route::get('js-grid', function () { return view('pages.tables.js-grid'); });
+    Route::get('sortable-table', function () { return view('pages.tables.sortable-table'); });
+});
+
+Route::get('/owners', function () {
+    return view('pages.owners');
+});
+Route::get('/customers', function () {
+    return view('pages.customers');
+});
+Route::get('/warehouses', function () {
+    return view('pages.warehouses');
+});
+Route::get('/transactions', function () {
+    return view('pages.transactions');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
