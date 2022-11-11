@@ -1,9 +1,18 @@
 <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-  <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-    <a class="navbar-brand brand-logo p-0" href="{{ url('/') }}">
-      <img class="my-2" src="{{ url('assets/images/teetip-logo2.png') }}"  height="40" alt="logo" /> </a>
-    <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
+  <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+    @guest
+        @if (Route::has('login'))
+          <a class="navbar-brand brand-logo p-0" href="{{ url('/') }}" >
+            <img class="" src="{{ url('assets/images/teetip-logo2.png') }}" alt="logo" style="height: 100%"/> </a>
+          <a class="navbar-brand brand-logo-mini" href="{{ url('/') }}">
+            <img src="{{ url('assets/images/logo-mini.svg') }}" alt="logo" /> </a>
+        @endif
+    @else
+    <a class="navbar-brand brand-logo p-0" href="{{ url('/dashboard') }}" >
+      <img class="" src="{{ url('assets/images/teetip-logo2.png') }}" alt="logo" style="height: 100%"/> </a>
+    <a class="navbar-brand brand-logo-mini" href="{{ url('/dashboard') }}">
       <img src="{{ url('assets/images/logo-mini.svg') }}" alt="logo" /> </a>
+    @endguest
   </div>
   <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
     <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

@@ -25,6 +25,9 @@ Route::group(['prefix' => 'tables'], function(){
     Route::get('sortable-table', function () { return view('pages.tables.sortable-table'); });
 });
 
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+});
 Route::get('/owners', function () {
     return view('pages.owners');
 });

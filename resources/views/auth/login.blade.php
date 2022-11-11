@@ -75,7 +75,7 @@
 @extends('layout.master-mini')
 @section('content')
 
-<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background: linear-gradient(90deg, rgba(32,33,173,1) 0%, rgba(20,133,107,1) 100%);; background-size: cover;">
+<div class="content-wrapper d-flex align-items-center justify-content-center auth theme-one" style="background: linear-gradient(90deg, rgba(32,33,173,1) 0%, rgba(20,133,107,1) 100%); background-size: cover;">
   <div class="row w-100">
     <div class="col-lg-4 mx-auto">
       <div class="auto-form-wrapper">
