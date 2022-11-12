@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,19 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+Auth::routes();
+
+Route::middleware(['auth', 'isAdmin'])->group(function(){
+    Route::prefix('admin')->group(function(){
+        Route::get('/dashboard', function () {
+            return view('admin.dashboard');
+        });
+        Route::controller(OwnerControllerAdmin::class)->group(function() {
+            Route::get('/owner', 'index');
+        });
+    });
+});
+
 Route::group(['prefix' => 'tables'], function(){
     Route::get('basic-table', function () { return view('pages.tables.basic-table'); });
     Route::get('data-table', function () { return view('pages.tables.data-table'); });
@@ -25,9 +39,7 @@ Route::group(['prefix' => 'tables'], function(){
     Route::get('sortable-table', function () { return view('pages.tables.sortable-table'); });
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-});
+
 Route::get('/owners', function () {
     return view('pages.owners');
 });

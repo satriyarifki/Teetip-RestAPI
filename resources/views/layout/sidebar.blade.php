@@ -28,7 +28,7 @@
     </li>
 
     <li class="nav-item ">
-      <a class="nav-link" href="{{ url('/owners') }}">
+      <a class="nav-link" href="{{ url('/admin/owner') }}">
         <i class="menu-icon mdi mdi-chart-line"></i>
         <span class="menu-title">Owners</span>
       </a>
