@@ -105,6 +105,24 @@
           </div>
           <div class="form-group">
             <div class="input-group">
+              <select name="role_id" id="role_id"  class="form-control rad-10 @error('role_id') is-invalid @enderror">
+                <option value="3" selected>Customer (Pemilik Barang)</option>
+                <option value="4">Owner (Pemilik Gudang)</option>
+              </select>
+              @error('role_id')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+              <div class="input-group-append">
+                <span class="input-group-text">
+                    Role
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-group">
                 <input id="password" placeholder="Masukkan Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                 @error('password')

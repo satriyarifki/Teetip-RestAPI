@@ -28,19 +28,23 @@
                 <td>{{ $row->phone }}</td>
                 <td>{{ $row->gender }}</td>
                 <td>
-                  
+                  <form action="/admin/owner/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                    @csrf
+                    @method('DELETE')
+  
+                    <a href="/admin/owner-edit/{{ $row->id }}" data-id="ownerEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Edit
+                    </a>
+  
+                    <button type="submit" data-id="ownerDelete{{ $row->id }}" class="btn fs-small btn-danger">
+                      <span class="fa fa-fw fa-trash mx-1"></span>
+                    Hapus
+                    </button>
+                  </form>
                 </td>
               </tr>
               @endforeach
-              {{-- <tr>
-                <td>2</td>
-                <td>Aldi</td>
-                <td class="text-danger"> 28.76% <i class="mdi mdi-arrow-down"></i>
-                </td>
-                <td>
-                  <label class="badge badge-danger">Pending</label>
-                </td>
-              </tr> --}}
             </tbody>
           </table>
         </div>

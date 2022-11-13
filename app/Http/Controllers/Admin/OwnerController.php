@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserOwner;
+use Illuminate\Support\Facades\Storage;
 
 class OwnerController extends Controller
 {
@@ -61,7 +62,9 @@ class OwnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Owner';
+        $data = UserOwner::where('id', $id)->first();
+        return view('admin.owner.edit', compact('title', 'data'));
     }
 
     /**
@@ -73,7 +76,37 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tables = UserOwner::where('id', $id)->first();
+
+        $request->validate([
+            'name' => 'required|string|max:50',
+            'phone' => 'required',
+            'gender' => 'required',
+            'alamat' => 'required',
+            'identity_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $identity_photo = null;
+        
+
+        if($tables->image && file_exists(storage_path('app/public/'. $tables->cover_image))){
+            Storage::delete(['public/', $tables->cover_image]);
+        }
+
+        if($request->image != null && $request->identity_photo && $request->driver_license && $request->selfie_photo){
+            $image = $request->file('image')->store('profile/'. $request->id, 'public');
+            $identity_photo = $request->file('identity_photo')->store('archives/'. $request->id, 'public');
+        }
+
+        UserOwner::where('id', $id)->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'gender' => $request->gender,
+            'alamat' => $request->alamat,
+            'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
+        ]);
+        
+        return redirect('/admin/owner')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -84,6 +117,7 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        UserOwner::where('id', $id)->delete();
+        return redirect('/operator/owner')->with('success', "Data berhasil dihapus");
     }
 }

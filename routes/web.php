@@ -28,6 +28,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         });
         Route::controller(OwnerControllerAdmin::class)->group(function() {
             Route::get('/owner', 'index');
+            Route::get('/owner-edit/{id}', 'edit');
+            Route::post('/owner-update/{id}', 'update');
+            Route::delete('/owner/{id}', 'destroy');
         });
     });
 });

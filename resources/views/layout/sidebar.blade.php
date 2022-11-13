@@ -1,12 +1,12 @@
 <nav class="sidebar sidebar-offcanvas dynamic-active-class-disabled" id="sidebar">
   <ul class="nav">
     <li class="nav-item ">
-      <a class="nav-link" href="{{ url('/dashboard') }}">
+      <a class="nav-link" href="{{ url('/admin/dashboard') }}">
         <i class="menu-icon mdi mdi-television"></i>
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item ">
+    {{-- <li class="nav-item ">
       <a class="nav-link" data-toggle="collapse" href="#basic-ui"  aria-controls="basic-ui">
         <i class="menu-icon mdi mdi-dna"></i>
         <span class="menu-title">Basic UI Elements</span>
@@ -25,7 +25,7 @@
           </li>
         </ul>
       </div>
-    </li>
+    </li> --}}
 
     <li class="nav-item ">
       <a class="nav-link" href="{{ url('/admin/owner') }}">
@@ -62,7 +62,7 @@
         <span class="menu-title">Transactions</span>
       </a>
     </li>
-    <li class="nav-item ">
+    {{-- <li class="nav-item ">
       <a class="nav-link" href="{{ url('/charts/chartjs') }}">
         <i class="menu-icon mdi mdi-chart-line"></i>
         <span class="menu-title">Charts</span>
@@ -105,6 +105,6 @@
         <i class="menu-icon mdi mdi-file-outline"></i>
         <span class="menu-title">Documentation</span>
       </a>
-    </li>
+    </li> --}}
   </ul>
 </nav>
