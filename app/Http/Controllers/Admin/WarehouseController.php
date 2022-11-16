@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Warehouse;
+use App\Models\UserOwner;
+use Illuminate\Support\Facades\Storage;
 
 class WarehouseController extends Controller
 {
@@ -13,7 +17,7 @@ class WarehouseController extends Controller
      */
     public function index()
     {
-        $title = 'Owner';
+        $title = 'Warehouse';
         $tables = Warehouse::all();
         return view('admin.warehouse.index', compact('tables', 'title'));
     }
@@ -45,7 +49,7 @@ class WarehouseController extends Controller
         ]);
 
         Warehouse::where('id', $id)->create([
-            'deskripsi' => $request->name,
+            'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
             'luas_total' => $request->luas_total,
             'harga_m2' => $request->harga_m2,
@@ -64,7 +68,7 @@ class WarehouseController extends Controller
     public function show($id)
     {
         $title = 'Warehouse';
-        $data = UserWarehouse::where('id', $id)->first();
+        $data = Warehouse::where('id', $id)->first();
         return view('admin.warehouse.detail', compact('title', 'data'));
     }
 
@@ -77,7 +81,7 @@ class WarehouseController extends Controller
     public function edit($id)
     {
         $title = 'Warehouse';
-        $data = UserWarehouse::where('id', $id)->first();
+        $data = Warehouse::where('id', $id)->first();
         return view('admin.warehouse.edit', compact('title', 'data'));
     }
 
@@ -98,8 +102,8 @@ class WarehouseController extends Controller
             'tipe' => 'required',
         ]);
 
-        UserCustomer::where('id', $id)->update([
-            'deskripsi' => $request->name,
+        Warehouse::where('id', $id)->update([
+            'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
             'luas_total' => $request->luas_total,
             'harga_m2' => $request->harga_m2,
@@ -117,7 +121,7 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        UserOwner::where('id', $id)->delete();
+        Warehouse::where('id', $id)->delete();
         return redirect('/admin/warehouse')->with('success', "Data berhasil dihapus");
     }
 }
