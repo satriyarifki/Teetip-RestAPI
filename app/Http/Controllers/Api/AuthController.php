@@ -38,7 +38,7 @@ class AuthController extends Controller
           'success' => true,
           'token' => $success,
           'user' => $user,
-         ]);
+         ],200);
         } else{
          return response()->json([
           'success' => false,
@@ -103,7 +103,7 @@ class AuthController extends Controller
         return response()->json([
          'success' => true,
          'token' => $success,
-        ]);
+        ],200);
        }
 
     public function logout(Request $request)
