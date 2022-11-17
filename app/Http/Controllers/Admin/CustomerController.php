@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Models\UserOwner;
+use App\Models\UserCustomer;
 use Illuminate\Support\Facades\Storage;
 
-class OwnerController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $title = 'Owner';
-        $tables = UserOwner::all();
-        return view('admin.owner.index', compact('tables', 'title'));
+        $title = 'Customer';
+        $tables = UserCustomer::all();
+        return view('admin.customer.index', compact('tables', 'title'));
     }
 
     /**
@@ -51,7 +51,9 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'Customer';
+        $data = UserCustomer::where('id', $id)->first();
+        return view('admin.customer.detail', compact('title', 'data'));
     }
 
     /**
@@ -62,9 +64,9 @@ class OwnerController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Owner';
-        $data = UserOwner::where('id', $id)->first();
-        return view('admin.owner.edit', compact('title', 'data'));
+        $title = 'Customer';
+        $data = UserCustomer::where('id', $id)->first();
+        return view('admin.customer.edit', compact('title', 'data'));
     }
 
     /**
@@ -76,7 +78,7 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tables = UserOwner::where('id', $id)->first();
+        $tables = UserCustomer::where('id', $id)->first();
 
         $request->validate([
             'name' => 'required|string|max:50',
@@ -98,7 +100,7 @@ class OwnerController extends Controller
             $identity_photo = $request->file('identity_photo')->store('archives/'. $request->id, 'public');
         }
 
-        UserOwner::where('id', $id)->update([
+        UserCustomer::where('id', $id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
             'gender' => $request->gender,
@@ -106,7 +108,7 @@ class OwnerController extends Controller
             'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
         ]);
         
-        return redirect('/admin/owner')->with('success', "Data berhasil diubah");
+        return redirect('/admin/customer')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -117,7 +119,7 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        UserOwner::where('id', $id)->delete();
-        return redirect('/admin/owner')->with('success', "Data berhasil dihapus");
+        UserCustomer::where('id', $id)->delete();
+        return redirect('/operator/customer')->with('success', "Data berhasil dihapus");
     }
 }
