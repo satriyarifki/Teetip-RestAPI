@@ -85,7 +85,7 @@ class OwnerController extends Controller
             'alamat' => 'required',
             'identity_photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-        // dd($request->identity_photo);
+        
         $identity_photo = null;
         
 
@@ -94,11 +94,10 @@ class OwnerController extends Controller
         }
 
         if($request->identity_photo!=null){
-            // dd($request->identity_photo);
+            
             $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
         }
         
-        // dd($identity_photo);
 
         UserOwner::where('id', $id)->update([
             'name' => $request->name,
