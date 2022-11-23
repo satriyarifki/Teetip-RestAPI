@@ -34,7 +34,7 @@
       </a>
     </li>
     <li class="nav-item ">
-      <a class="nav-link" href="{{ url('/customers') }}">
+      <a class="nav-link" href="{{ url('/admin/customer') }}">
         <i class="menu-icon mdi mdi-chart-line"></i>
         <span class="menu-title">Customers</span>
       </a>
@@ -48,10 +48,10 @@
       <div class="collapse " id="main-sidebar">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('/warehouses') }}">Warehouse</a>
+            <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('/detail-warehouse') }}">Detail Warehouse</a>
+            <a class="nav-link" href="{{ url('admin/detail-warehouse') }}">Detail Warehouse</a>
           </li>
         </ul>
       </div>
