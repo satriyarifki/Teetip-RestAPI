@@ -14,6 +14,7 @@
             <thead>
               <tr>
                 <th>User ID</th>
+                <th>Nama</th>
                 <th>Alamat</th>
                 <th>Luas Total</th>
                 <th>Harga/m2</th>
@@ -25,7 +26,8 @@
             <tbody>
               @foreach($tables as $row)
               <tr>
-                <td>{{ $row->id_user_owner }}</td>
+                <td>{{ $row->user_owner_id }}</td>
+                <td>{{ $row->name }}</td>
                 <td>{{ $row->alamat }}</td>
                 <td>{{ $row->luas_total }}</td>
                 <td>{{ $row->harga_m2 }}</td>

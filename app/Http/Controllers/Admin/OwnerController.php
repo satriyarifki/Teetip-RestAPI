@@ -87,11 +87,6 @@ class OwnerController extends Controller
         ]);
 
         $identity_photo = null;
-        
-
-        if($tables->image && file_exists(storage_path('app/public/'. $tables->cover_image))){
-            Storage::delete(['public/', $tables->cover_image]);
-        }
 
         if($request->image != null && $request->identity_photo && $request->driver_license && $request->selfie_photo){
             $image = $request->file('image')->store('profile/'. $request->id, 'public');
@@ -106,7 +101,7 @@ class OwnerController extends Controller
             'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
         ]);
         
-        return redirect('/admin/owner')->with('success', "Data berhasil diubah");
+        return redirect('/admin/user')->with('success', "Data berhasil diubah");
     }
 
     /**

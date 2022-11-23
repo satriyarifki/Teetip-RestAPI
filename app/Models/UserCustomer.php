@@ -9,8 +9,7 @@ class UserCustomer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name', 'gender', 'phone', 'alamat', 
-    'identity_photo', 'driver_license', 'selfie_photo'];
+    protected $fillable = ['user_id', 'name', 'gender', 'phone', 'alamat', 'identity_photo'];
 
     public function user(){
         return $this->belongsTo(User::class, 'user_id', 'id');
