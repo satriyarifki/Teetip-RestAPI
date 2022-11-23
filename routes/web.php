@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
+use App\Http\Controllers\Admin\CustomerController as CustomerControllerAdmin;
+use App\Http\Controllers\Admin\WarehouseController as WarehouseControllerAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
             Route::get('/owner-edit/{id}', 'edit');
             Route::post('/owner-update/{id}', 'update');
             Route::delete('/owner/{id}', 'destroy');
+        });
+        Route::controller(CustomerControllerAdmin::class)->group(function() {
+            Route::get('/customer', 'index');
+            Route::get('/customer-edit/{id}', 'edit');
+            Route::post('/customer-update/{id}', 'update');
+            Route::delete('/customer/{id}', 'destroy');
+        });
+        Route::controller(WarehouseControllerAdmin::class)->group(function() {
+            Route::get('/warehouse', 'index');
+            Route::get('/warehouse-edit/{id}', 'edit');
+            Route::post('/warehouse-update/{id}', 'update');
+            Route::delete('/warehouse/{id}', 'destroy');
         });
     });
 });

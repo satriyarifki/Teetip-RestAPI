@@ -108,7 +108,7 @@ class CustomerController extends Controller
             'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
         ]);
         
-        return redirect('/admin/customer')->with('success', "Data berhasil diubah");
+        return redirect('/admin/customers')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -120,6 +120,6 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         UserCustomer::where('id', $id)->delete();
-        return redirect('/operator/customer')->with('success', "Data berhasil dihapus");
+        return redirect('/admin/customers')->with('success', "Data berhasil dihapus");
     }
 }
