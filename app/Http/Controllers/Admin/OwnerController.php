@@ -77,15 +77,15 @@ class OwnerController extends Controller
     public function update(Request $request, $id)
     {
         $tables = UserOwner::where('id', $id)->first();
-
+        
         $request->validate([
             'name' => 'required|string|max:50',
             'phone' => 'required',
             'gender' => 'required',
             'alamat' => 'required',
-            'identity_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'identity_photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
         ]);
-
+        // dd($request->identity_photo);
         $identity_photo = null;
         
 
@@ -93,17 +93,19 @@ class OwnerController extends Controller
             Storage::delete(['public/', $tables->cover_image]);
         }
 
-        if($request->image != null && $request->identity_photo && $request->driver_license && $request->selfie_photo){
-            $image = $request->file('image')->store('profile/'. $request->id, 'public');
-            $identity_photo = $request->file('identity_photo')->store('archives/'. $request->id, 'public');
+        if($request->identity_photo!=null){
+            // dd($request->identity_photo);
+            $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
         }
+        
+        // dd($identity_photo);
 
         UserOwner::where('id', $id)->update([
             'name' => $request->name,
             'phone' => $request->phone,
             'gender' => $request->gender,
             'alamat' => $request->alamat,
-            'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
+            'identity_photo' => ($identity_photo != null) ? $identity_photo : $request->identity_photo,
         ]);
         
         return redirect('/admin/owner')->with('success', "Data berhasil diubah");
