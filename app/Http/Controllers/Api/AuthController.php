@@ -15,20 +15,6 @@ use App\Models\UserOwner;
 
 class AuthController extends Controller
 {
-    //
-    // public function login(Request $request){
-    //     $credentials = $request->validate([
-    //         'email' => ['required', 'email'],
-    //         'password' => ['required'],
-    //     ]);
- 
-    //     if (Auth::attempt($credentials)) {
-    //         $json = User::where('email', $credentials['email'])->first();
-    //         return response()->json([$json,'token' => $request->user()->createToken($request->email)->plainTextToken], 200);
-    //     }
- 
-    //     return response()->json(['status' => 'failed load data!'], 400);
-    // }
 
     public function login(){
         if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
@@ -46,26 +32,6 @@ class AuthController extends Controller
          ], 401);
         };
     }
-
-    // public function register(Request $request)
-    // {
-    //     $request->validate([
-    //         'email' => 'required|string|email|unique:users',
-    //         'password' => ['required', 'string', 'min:8', 'confirmed', Password::defaults()],
-    //     ]);
-
-    //     $user = User::create([
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //     ]);
-
-    //     return response()->json(
-    //         [
-    //             'token' => $user->createToken($request->device_name)->plainTextToken,
-    //         ],
-    //         200
-    //     );
-    // }
 
     public function register(Request $request){
         $validator = Validator::make($request->all(), [
