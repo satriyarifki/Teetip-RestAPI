@@ -13,7 +13,7 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>Warehouse ID</th>
+                <th>Warehouse Name</th>
                 <th>Panjang Petak</th>
                 <th>Lebar Petak</th>
                 <th>Luas Petak</th>
@@ -24,7 +24,7 @@
             <tbody>
               @foreach($tables as $row)
               <tr>
-                <td>{{ $row->warehouse_id }}</td>
+                <td>{{ $row->warehouse->name }}</td>
                 <td>{{ $row->panjang_petak }} m</td>
                 <td>{{ $row->lebar_petak }} m</td>
                 <td>{{ $row->luas_petak }} m2</td>
@@ -34,9 +34,13 @@
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/detail-warehouse-edit/{{ $row->id }}" data-id="detailWarehouseEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/detail-warehouse-edit/{{ $row->id }}" data-id="detailWarehouseEdit{{ $row->id }}" class="btn fs-small btn-primary text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
+                    </a>
+                    <a href="/admin/detail-warehouse-detail/{{ $row->id }}" data-id="detailWarehouseDetail{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Show
                     </a>
   
                     <button type="submit" data-id="detailWarehouseDelete{{ $row->id }}" class="btn fs-small btn-danger">

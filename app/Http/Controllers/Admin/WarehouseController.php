@@ -95,6 +95,7 @@ class WarehouseController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'name' => 'required',
             'deskripsi' => 'required',
             'alamat' => 'required',
             'luas_total' => 'required',
@@ -103,6 +104,7 @@ class WarehouseController extends Controller
         ]);
 
         Warehouse::where('id', $id)->update([
+            'name' => $request->name,
             'deskripsi' => $request->deskripsi,
             'alamat' => $request->alamat,
             'luas_total' => $request->luas_total,

@@ -24,8 +24,8 @@
               @enderror
             </div>
             <div class="form-group col-md-6">
-              <label for="user_customer_id"> Customer ID</label>
-              <input class="form-control"  id="user_customer_id" type="text" class="form-control @error('user_customer_id') is-invalid @enderror" name="user_customer_id"  readonly value="{{ $data->user_customer_id }}" required autocomplete="user_customer_id">
+              <label for="user_customer_id"> Customer Name</label>
+              <input class="form-control"  id="user_customer_id" type="text" class="form-control @error('user_customer_id') is-invalid @enderror" name="user_customer_id"  readonly value="{{ $data->user_customer->name }}" required autocomplete="user_customer_id">
               @error('user_customer_id')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -36,8 +36,8 @@
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="user_owner_id"> Owner ID</label>
-              <input class="form-control"  id="user_owner_id" type="text" class="form-control @error('user_owner_id') is-invalid @enderror" name="user_owner_id"  readonly value="{{ $data->user_owner_id }}" required autocomplete="user_owner_id">
+              <label for="user_owner_id"> Owner Name</label>
+              <input class="form-control"  id="user_owner_id" type="text" class="form-control @error('user_owner_id') is-invalid @enderror" name="user_owner_id"  readonly value="{{ $data->user_owner->name }}" required autocomplete="user_owner_id">
               @error('user_owner_id')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -45,8 +45,8 @@
               @enderror
             </div>
             <div class="form-group col-md-6">
-              <label for="detail_warehouse_id"> Detail Warehouse ID</label>
-              <input class="form-control"  id="detail_warehouse_id" type="text" class="form-control @error('detail_warehouse_id') is-invalid @enderror" name="detail_warehouse_id"  readonly value="{{ $data->detail_warehouse_id }}" required autocomplete="detail_warehouse_id">
+              <label for="detail_warehouse_id"> Warehouse Name</label>
+              <input class="form-control"  id="detail_warehouse_id" type="text" class="form-control @error('detail_warehouse_id') is-invalid @enderror" name="detail_warehouse_id"  readonly value="{{ $data->detail_warehouse->warehouse->name }}" required autocomplete="detail_warehouse_id">
               @error('detail_warehouse_id')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>

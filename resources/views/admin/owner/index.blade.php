@@ -34,9 +34,13 @@
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/owner-edit/{{ $row->id }}" data-id="ownerEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/owner-edit/{{ $row->id }}" data-id="ownerEdit{{ $row->id }}" class="btn fs-small btn-primary text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
+                    </a>
+                    <a href="/admin/owner-detail/{{ $row->id }}" data-id="ownerDetail{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Show
                     </a>
   
                     <button type="submit" data-id="ownerDelete{{ $row->id }}" class="btn fs-small btn-danger">

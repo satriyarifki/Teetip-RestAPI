@@ -18,4 +18,8 @@ class UserOwner extends Model
     public function transaction(){
         return $this->hasMany(Transaction::class);
     }
+
+    public function warehouse(){
+        return $this->hasMany(Warehouse::class);
+    }
 }

@@ -14,9 +14,9 @@
             <thead>
               <tr>
                 <th>TX ID</th>
-                <th>Customer ID</th>
-                <th>Owner ID</th>
-                <th>Detail Warehouse ID</th>
+                <th>Customer</th>
+                <th>Owner</th>
+                <th>Warehouse</th>
                 <th>information</th>
                 <th>Total</th>
                 <th>Status</th>
@@ -27,9 +27,9 @@
               @foreach($tables as $row)
               <tr>
                 <td>{{ $row->txid }}</td>
-                <td>{{ $row->user_customer_id }}</td>
-                <td>{{ $row->user_owner_id }}</td>
-                <td>{{ $row->detail_warehouse_id }}</td>
+                <td>{{ $row->user_customer->name }}</td>
+                <td>{{ $row->user_owner->name }}</td>
+                <td>{{ $row->detail_warehouse->warehouse->name }}</td>
                 <td>{{ $row->information }}</td>
                 <td>{{ $row->total }}</td>
                 <td>{{ $row->status }}</td>
@@ -38,9 +38,13 @@
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/transaction-edit/{{ $row->txid }}" data-id="transactionEdit{{ $row->txid }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/transaction-edit/{{ $row->txid }}" data-id="transactionEdit{{ $row->txid }}" class="btn fs-small btn-primary text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
+                    </a>
+                    <a href="/admin/transaction-detail/{{ $row->txid }}" data-id="transactionDetail{{ $row->txid }}" class="btn fs-small btn-info text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Show
                     </a>
   
                     <button type="submit" data-id="transactionDelete{{ $row->txid }}" class="btn fs-small btn-danger">
