@@ -88,8 +88,7 @@ class OwnerController extends Controller
         
         $identity_photo = null;
 
-        if($request->identity_photo!=null){
-            
+        if($request->identity_photo!=null){  
             $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
         }
         
@@ -102,7 +101,7 @@ class OwnerController extends Controller
             'identity_photo' => ($identity_photo != null) ? $identity_photo : $request->identity_photo,
         ]);
         
-        return redirect('/admin/user')->with('success', "Data berhasil diubah");
+        return redirect('/admin/owner')->with('success', "Data berhasil diubah");
     }
 
     /**

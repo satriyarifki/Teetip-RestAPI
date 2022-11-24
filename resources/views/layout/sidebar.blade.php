@@ -48,16 +48,16 @@
       <div class="collapse " id="main-sidebar">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('admin/warehouse') }}">Warehouse</a>
+            <a class="nav-link" href="{{ url('/admin/warehouse') }}">Warehouse</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="{{ url('admin/detail-warehouse') }}">Detail Warehouse</a>
+            <a class="nav-link" href="{{ url('/admin/detail-warehouse') }}">Detail Warehouse</a>
           </li>
         </ul>
       </div>
     </li>
     <li class="nav-item ">
-      <a class="nav-link" href="{{ url('/transactions') }}">
+      <a class="nav-link" href="{{ url('/admin/transaction') }}">
         <i class="menu-icon mdi mdi-chart-line"></i>
         <span class="menu-title">Transactions</span>
       </a>

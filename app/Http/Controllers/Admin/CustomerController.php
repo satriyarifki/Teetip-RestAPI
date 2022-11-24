@@ -90,14 +90,8 @@ class CustomerController extends Controller
 
         $identity_photo = null;
         
-
-        if($tables->image && file_exists(storage_path('app/public/'. $tables->cover_image))){
-            Storage::delete(['public/', $tables->cover_image]);
-        }
-
-        if($request->image != null && $request->identity_photo && $request->driver_license && $request->selfie_photo){
-            $image = $request->file('image')->store('profile/'. $request->id, 'public');
-            $identity_photo = $request->file('identity_photo')->store('archives/'. $request->id, 'public');
+        if($request->identity_photo!=null){  
+            $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
         }
 
         UserCustomer::where('id', $id)->update([
@@ -108,7 +102,7 @@ class CustomerController extends Controller
             'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
         ]);
         
-        return redirect('/admin/customers')->with('success', "Data berhasil diubah");
+        return redirect('/admin/customer')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -120,6 +114,6 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         UserCustomer::where('id', $id)->delete();
-        return redirect('/admin/customers')->with('success', "Data berhasil dihapus");
+        return redirect('/admin/customer')->with('success', "Data berhasil dihapus");
     }
 }

@@ -17,7 +17,7 @@ class DetailWarehouseController extends Controller
      */
     public function index()
     {
-        $title = 'DetailWarehouse';
+        $title = 'Detail Warehouse';
         $tables = DetailWarehouse::all();
         return view('admin.detail-warehouse.index', compact('tables', 'title'));
     }
@@ -65,7 +65,7 @@ class DetailWarehouseController extends Controller
      */
     public function show($id)
     {
-        $title = 'DetailWarehouse';
+        $title = 'Detail Warehouse';
         $data = DetailWarehouse::where('id', $id)->first();
         return view('admin.detail-warehouse.detail', compact('title', 'data'));
     }
@@ -78,7 +78,7 @@ class DetailWarehouseController extends Controller
      */
     public function edit($id)
     {
-        $title = 'DetailWarehouse';
+        $title = 'Detail Warehouse';
         $data = DetailWarehouse::where('id', $id)->first();
         return view('admin.detail-warehouse.edit', compact('title', 'data'));
     }

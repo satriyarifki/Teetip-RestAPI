@@ -11,7 +11,7 @@
         <div class="mb-3">
           <h3 class="">Edit {{ $title }}</h3>
         </div>
-        <form method="POST" action="{{ url('admin/customer-update/'.$data->id) }}">
+        <form method="POST" action="{{ url('admin/customer-update/'.$data->id) }}" enctype="multipart/form-data">
           @csrf
           <div class="row">
             <div class="form-group col-md-6">

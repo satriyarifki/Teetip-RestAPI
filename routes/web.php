@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
 use App\Http\Controllers\Admin\CustomerController as CustomerControllerAdmin;
 use App\Http\Controllers\Admin\WarehouseController as WarehouseControllerAdmin;
+use App\Http\Controllers\Admin\DetailWarehouseController as DetailWarehouseControllerAdmin;
+use App\Http\Controllers\Admin\TransactionController as TransactionControllerAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,18 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
             Route::get('/warehouse-edit/{id}', 'edit');
             Route::post('/warehouse-update/{id}', 'update');
             Route::delete('/warehouse/{id}', 'destroy');
+        });
+        Route::controller(DetailWarehouseControllerAdmin::class)->group(function() {
+            Route::get('/detail-warehouse', 'index');
+            Route::get('/detail-warehouse-edit/{id}', 'edit');
+            Route::post('/detail-warehouse-update/{id}', 'update');
+            Route::delete('/detail-warehouse/{id}', 'destroy');
+        });
+        Route::controller(TransactionControllerAdmin::class)->group(function() {
+            Route::get('/transaction', 'index');
+            Route::get('/transaction-edit/{txid}', 'edit');
+            Route::post('/transaction-update/{txid}', 'update');
+            Route::delete('/transaction/{txid}', 'destroy');
         });
     });
 });

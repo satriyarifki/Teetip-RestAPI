@@ -13,37 +13,33 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>TX ID</th>
-                <th>Customer ID</th>
-                <th>Owner ID</th>
-                <th>Detail Warehouse ID</th>
-                <th>information</th>
-                <th>Total</th>
-                <th>Status</th>
+                <th>Warehouse ID</th>
+                <th>Panjang Petak</th>
+                <th>Lebar Petak</th>
+                <th>Luas Petak</th>
+                <th>Harga</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               @foreach($tables as $row)
               <tr>
-                <td>{{ $row->txid }}</td>
-                <td>{{ $row->user_customer_id }}</td>
-                <td>{{ $row->user_owner_id }}</td>
-                <td>{{ $row->detail_warehouse_id }}</td>
-                <td>{{ $row->information }}</td>
-                <td>{{ $row->total }}</td>
-                <td>{{ $row->status }}</td>
+                <td>{{ $row->warehouse_id }}</td>
+                <td>{{ $row->panjang_petak }} m</td>
+                <td>{{ $row->lebar_petak }} m</td>
+                <td>{{ $row->luas_petak }} m2</td>
+                <td>{{ $row->harga }}</td>
                 <td>
-                  <form action="/admin/transaction/{{ $row->txid }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                  <form action="/admin/detail-warehouse/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/transaction-edit/{{ $row->txid }}" data-id="transactionEdit{{ $row->txid }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/detail-warehouse-edit/{{ $row->id }}" data-id="detailWarehouseEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
                     </a>
   
-                    <button type="submit" data-id="transactionDelete{{ $row->txid }}" class="btn fs-small btn-danger">
+                    <button type="submit" data-id="detailWarehouseDelete{{ $row->id }}" class="btn fs-small btn-danger">
                       <span class="fa fa-fw fa-trash mx-1"></span>
                     Hapus
                     </button>

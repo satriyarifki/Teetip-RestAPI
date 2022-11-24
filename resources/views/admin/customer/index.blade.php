@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Gender</th>
+                <th>Alamat</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->phone }}</td>
                 <td>{{ $row->gender }}</td>
+                <td>{{ $row->alamat }}</td>
                 <td>
                   <form action="/admin/customer/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                     @csrf
