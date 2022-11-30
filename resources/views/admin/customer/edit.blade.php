@@ -47,8 +47,8 @@
             </div>
             <div class="form-group col-md-6">
               <label for="gender"> Gender</label>
-              <select name="gender" id="gender" class="form-control rad-6 fs-normal">
-                <option value="male" {{ ($data->gender == 'male') ? 'selected' : '' }}>Laki-laki</option>
+              <select name="gender" id="gender" class="form-control">
+                <option value="male" {{ ($data->gender == 'male') ? 'selected' : '' }} >Laki-laki</option>
                 <option value="female" {{ ($data->gender == 'female') ? 'selected' : '' }}>Perempuan</option>
                 <option value="hidden" {{ ($data->gender == 'hidden') ? 'selected' : '' }}>Hidden</option>
               </select>

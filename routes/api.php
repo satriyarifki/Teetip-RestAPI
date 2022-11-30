@@ -23,4 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::get('/get-role', [GetDataController::class, 'getrole']);
-Route::get('/get-warehouse', [GetDataController::class, 'getWarehouse']);
+// Route::get('/get-warehouse', [GetDataController::class, 'getWarehouse']);
+
+Route::group(
+    ['middleware' => 'auth:sanctum'],
+    function() {
+        Route::get('/get-warehouse', [GetDataController::class, 'getWarehouse']);
+    }
+);
