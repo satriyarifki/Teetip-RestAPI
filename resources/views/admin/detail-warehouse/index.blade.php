@@ -13,37 +13,37 @@
           <table class="table table-hover">
             <thead>
               <tr>
-                <th>User ID</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Gender</th>
-                <th>Alamat</th>
+                <th>Warehouse Name</th>
+                <th>Panjang Petak</th>
+                <th>Lebar Petak</th>
+                <th>Luas Petak</th>
+                <th>Harga</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
               @foreach($tables as $row)
               <tr>
-                <td>{{ $row->user_id }}</td>
-                <td>{{ $row->name }}</td>
-                <td>{{ $row->phone }}</td>
-                <td>{{ $row->gender }}</td>
-                <td>{{ $row->alamat }}</td>
+                <td>{{ $row->warehouse->name }}</td>
+                <td>{{ $row->panjang_petak }} m</td>
+                <td>{{ $row->lebar_petak }} m</td>
+                <td>{{ $row->luas_petak }} m2</td>
+                <td>{{ $row->harga }}</td>
                 <td>
-                  <form action="/admin/owner/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
+                  <form action="/admin/detail-warehouse/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/owner-edit/{{ $row->id }}" data-id="ownerEdit{{ $row->id }}" class="btn fs-small btn-primary text-decoration-none">
+                    <a href="/admin/detail-warehouse-edit/{{ $row->id }}" data-id="detailWarehouseEdit{{ $row->id }}" class="btn fs-small btn-primary text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
                     </a>
-                    <a href="/admin/owner-detail/{{ $row->id }}" data-id="ownerDetail{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/detail-warehouse-detail/{{ $row->id }}" data-id="detailWarehouseDetail{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Show
                     </a>
   
-                    <button type="submit" data-id="ownerDelete{{ $row->id }}" class="btn fs-small btn-danger">
+                    <button type="submit" data-id="detailWarehouseDelete{{ $row->id }}" class="btn fs-small btn-danger">
                       <span class="fa fa-fw fa-trash mx-1"></span>
                     Hapus
                     </button>

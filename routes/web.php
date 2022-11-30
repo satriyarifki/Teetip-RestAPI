@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
 use App\Http\Controllers\Admin\CustomerController as CustomerControllerAdmin;
 use App\Http\Controllers\Admin\WarehouseController as WarehouseControllerAdmin;
+use App\Http\Controllers\Admin\DetailWarehouseController as DetailWarehouseControllerAdmin;
+use App\Http\Controllers\Admin\TransactionController as TransactionControllerAdmin;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,20 +33,37 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
         Route::controller(OwnerControllerAdmin::class)->group(function() {
             Route::get('/owner', 'index');
             Route::get('/owner-edit/{id}', 'edit');
+            Route::get('/owner-detail/{id}', 'show');
             Route::post('/owner-update/{id}', 'update');
             Route::delete('/owner/{id}', 'destroy');
         });
         Route::controller(CustomerControllerAdmin::class)->group(function() {
             Route::get('/customer', 'index');
             Route::get('/customer-edit/{id}', 'edit');
+            Route::get('/customer-detail/{id}', 'show');
             Route::post('/customer-update/{id}', 'update');
             Route::delete('/customer/{id}', 'destroy');
         });
         Route::controller(WarehouseControllerAdmin::class)->group(function() {
             Route::get('/warehouse', 'index');
             Route::get('/warehouse-edit/{id}', 'edit');
+            Route::get('/warehouse-detail/{id}', 'show');
             Route::post('/warehouse-update/{id}', 'update');
             Route::delete('/warehouse/{id}', 'destroy');
+        });
+        Route::controller(DetailWarehouseControllerAdmin::class)->group(function() {
+            Route::get('/detail-warehouse', 'index');
+            Route::get('/detail-warehouse-edit/{id}', 'edit');
+            Route::get('/detail-warehouse-detail/{id}', 'show');
+            Route::post('/detail-warehouse-update/{id}', 'update');
+            Route::delete('/detail-warehouse/{id}', 'destroy');
+        });
+        Route::controller(TransactionControllerAdmin::class)->group(function() {
+            Route::get('/transaction', 'index');
+            Route::get('/transaction-edit/{txid}', 'edit');
+            Route::get('/transaction-detail/{txid}', 'show');
+            Route::post('/transaction-update/{txid}', 'update');
+            Route::delete('/transaction/{txid}', 'destroy');
         });
     });
 });

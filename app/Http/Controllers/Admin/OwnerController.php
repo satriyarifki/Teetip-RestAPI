@@ -51,7 +51,9 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = 'Owner';
+        $data = UserOwner::where('id', $id)->first();
+        return view('admin.owner.detail', compact('title', 'data'));
     }
 
     /**
@@ -87,14 +89,8 @@ class OwnerController extends Controller
         ]);
         
         $identity_photo = null;
-        
 
-        if($tables->image && file_exists(storage_path('app/public/'. $tables->cover_image))){
-            Storage::delete(['public/', $tables->cover_image]);
-        }
-
-        if($request->identity_photo!=null){
-            
+        if($request->identity_photo!=null){  
             $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
         }
         

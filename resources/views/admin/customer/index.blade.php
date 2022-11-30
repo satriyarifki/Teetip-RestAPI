@@ -17,6 +17,7 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Gender</th>
+                <th>Alamat</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -27,14 +28,19 @@
                 <td>{{ $row->name }}</td>
                 <td>{{ $row->phone }}</td>
                 <td>{{ $row->gender }}</td>
+                <td>{{ $row->alamat }}</td>
                 <td>
                   <form action="/admin/customer/{{ $row->id }}" onsubmit="return confirm('Apakah anda yakin akan menghapus data?')" method="post">
                     @csrf
                     @method('DELETE')
   
-                    <a href="/admin/customer-edit/{{ $row->id }}" data-id="customerEdit{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                    <a href="/admin/customer-edit/{{ $row->id }}" data-id="customerEdit{{ $row->id }}" class="btn fs-small btn-primary text-decoration-none">
                       <span class="fa fa-fw fa-syringe mx-1"></span>
                       Edit
+                    </a>
+                    <a href="/admin/customer-detail/{{ $row->id }}" data-id="customerDetail{{ $row->id }}" class="btn fs-small btn-info text-decoration-none">
+                      <span class="fa fa-fw fa-syringe mx-1"></span>
+                      Show
                     </a>
   
                     <button type="submit" data-id="customerDelete{{ $row->id }}" class="btn fs-small btn-danger">
