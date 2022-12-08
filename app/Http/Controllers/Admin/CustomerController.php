@@ -90,8 +90,9 @@ class CustomerController extends Controller
 
         $identity_photo = null;
         
-        if($request->identity_photo!=null){  
-            $identity_photo = $request->identity_photo->store('profile/'. $request->id, 'public');
+        if($request->identity_photo!=null){ 
+            // dd($request->identity_photo); 
+            $identity_photo = $request->identity_photo->store('profile/customer/'. $request->id, 'public');
         }
 
         UserCustomer::where('id', $id)->update([
@@ -99,7 +100,7 @@ class CustomerController extends Controller
             'phone' => $request->phone,
             'gender' => $request->gender,
             'alamat' => $request->alamat,
-            'identity_photo' => ($identity_photo != null) ? $request->identity_photo : $identity_photo,
+            'identity_photo' => ($identity_photo != null) ?$identity_photo : $request->identity_photo,
         ]);
         
         return redirect('/admin/customer')->with('success', "Data berhasil diubah");

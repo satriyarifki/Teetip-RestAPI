@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\UserController as UserControllerAdmin;
 use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
 use App\Http\Controllers\Admin\CustomerController as CustomerControllerAdmin;
 use App\Http\Controllers\Admin\WarehouseController as WarehouseControllerAdmin;
@@ -29,6 +30,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function(){
     Route::prefix('admin')->group(function(){
         Route::get('/dashboard', function () {
             return view('admin.dashboard');
+        });
+        Route::controller(UserControllerAdmin::class)->group(function() {
+            Route::get('/user', 'index');
+            Route::get('/user-edit/{id}', 'edit');
+            Route::get('/user-detail/{id}', 'show');
+            Route::post('/user-update/{id}', 'update');
+            Route::delete('/user/{id}', 'destroy');
         });
         Route::controller(OwnerControllerAdmin::class)->group(function() {
             Route::get('/owner', 'index');
