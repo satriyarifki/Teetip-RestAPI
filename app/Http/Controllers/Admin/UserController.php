@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserOwner;
+use App\Models\UserCustomer;
+use App\Models\Role;
 use Illuminate\Support\Facades\Storage;
 
-class OwnerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +19,9 @@ class OwnerController extends Controller
      */
     public function index()
     {
-        $title = 'Owner';
-        $tables = UserOwner::all();
-        return view('admin.owner.index', compact('tables', 'title'));
+        $title = 'User';
+        $tables = User::all();
+        return view('admin.user.index', compact('tables', 'title'));
     }
 
     /**
@@ -51,9 +53,7 @@ class OwnerController extends Controller
      */
     public function show($id)
     {
-        $title = 'Owner';
-        $data = UserOwner::where('id', $id)->first();
-        return view('admin.owner.detail', compact('title', 'data'));
+        //
     }
 
     /**
@@ -64,9 +64,9 @@ class OwnerController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Owner';
-        $data = UserOwner::where('id', $id)->first();
-        return view('admin.owner.edit', compact('title', 'data'));
+        $title = 'User';
+        $data = User::where('id', $id)->first();
+        return view('admin.user.edit', compact('title', 'data'));
     }
 
     /**
@@ -78,32 +78,19 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tables = UserOwner::where('id', $id)->first();
+        $tables = User::where('id', $id)->first();
         
         $request->validate([
-            'name' => 'required|string|max:50',
-            'phone' => 'required',
-            'gender' => 'required',
-            'alamat' => 'required',
-            'identity_photo' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+            'email' => 'required',
+            'role_id' => 'required',
         ]);
         
-        $identity_photo = null;
-
-        if($request->identity_photo!=null){  
-            $identity_photo = $request->identity_photo->store('profile/owner/'. $request->id, 'public');
-        }
-        
-
-        UserOwner::where('id', $id)->update([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'alamat' => $request->alamat,
-            'identity_photo' => ($identity_photo != null) ? $identity_photo : $request->identity_photo,
+        User::where('id', $id)->update([
+            'email' => $request->email,
+            'role_id' => $request->role_id,
         ]);
         
-        return redirect('/admin/owner')->with('success', "Data berhasil diubah");
+        return redirect('/admin/user')->with('success', "Data berhasil diubah");
     }
 
     /**
@@ -114,7 +101,7 @@ class OwnerController extends Controller
      */
     public function destroy($id)
     {
-        UserOwner::where('id', $id)->delete();
-        return redirect('/admin/owner')->with('success', "Data berhasil dihapus");
+        User::where('id', $id)->delete();
+        return redirect('/admin/user')->with('success', "Data berhasil dihapus");
     }
 }

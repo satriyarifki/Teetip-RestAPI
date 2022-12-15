@@ -132,7 +132,7 @@
           </div>
         </form>
       </div>
-      {{-- <ul class="auth-footer">
+      <!-- <ul class="auth-footer">
         <li>
           <a href="#">Conditions</a>
         </li>
@@ -142,7 +142,7 @@
         <li>
           <a href="#">Terms</a>
         </li>
-      </ul> --}}
+      </ul> -->
       <p class="footer-text text-center my-2">copyright © 2022 Teetip. All rights reserved.</p>
     </div>
   </div>
