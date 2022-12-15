@@ -4,6 +4,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\GetDataController;
+use App\Http\Controllers\Api\TransactionController as TransApi;
+use App\Http\Controllers\Api\WarehouseController as WarehouseApi;
+use App\Http\Controllers\Api\DetailsWarehouseController as DetailWarehouseApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +32,26 @@ Route::group(
     ['middleware' => 'auth:sanctum'],
     function() {
         Route::get('/get-warehouse', [GetDataController::class, 'getWarehouse']);
+        Route::get('/detail-warehouse/{id}', [GetDataController::class, 'getWarehouseDetails']);
+        Route::get('/owner-warehouse/{id}', [GetDataController::class, 'getOwnerWarehouse']);
+        Route::get('/customer-transaction/{id}', [GetDataController::class, 'getCustTransaction']);
+        Route::get('/owner-transaction/{id}', [GetDataController::class, 'getOwnerTransaction']);
+        Route::get('/get-customer/{id}', [GetDataController::class, 'getCust']);
+
+        Route::controller(TransApi::class)->group(function() {
+            Route::post('/store-transaction', 'store');
+            Route::post('/update-transaction/{id}', 'update');
+            
+        });
+        Route::controller(WarehouseApi::class)->group(function() {
+            Route::post('/store-warehouse', 'store');
+            Route::post('/update-warehouse/{id}', 'update');
+            
+        });
+        Route::controller(DetailWarehouseApi::class)->group(function() {
+            Route::post('/store-detail
+            -warehouse', 'store');
+            
+        });
     }
 );

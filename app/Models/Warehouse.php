@@ -9,7 +9,7 @@ class Warehouse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id_user_owner','name','deskripsi','alamat','luas_total','harga_m2','tipe'];
+    protected $fillable = ['user_owner_id','name','deskripsi','alamat','luas_total','harga_m2','tipe'];
 
     public function detail_warehouse(){
         return $this->hasMany(DetailWarehouse::class);
