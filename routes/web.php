@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\Admin\UserController as UserControllerAdmin;
 use App\Http\Controllers\Admin\OwnerController as OwnerControllerAdmin;
 use App\Http\Controllers\Admin\CustomerController as CustomerControllerAdmin;
@@ -100,3 +101,19 @@ Route::get('/transactions', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/config', function () {
+    Artisan::call(
+        'migrate:fresh',
+        [
+            '--force' => true,
+        ]
+    );
+    Artisan::call(
+        'db:seed',
+        [
+            '--force' => true,
+        ]
+    );
+});
